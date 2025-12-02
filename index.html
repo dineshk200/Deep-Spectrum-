@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSpectrum Analytics | Home</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="Logo.svg" alt="DeepSpectrum Analytics">
+                </a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="patents.html">Patents</a></li>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="#contact" class="btn-nav">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <canvas id="hero-3d-canvas"></canvas>
+
+            <div class="container hero-container">
+                <div class="hero-text" data-aos="fade-right">
+                    <p class="hero-subtitle">DeepSpectrum Private Limited</p>
+                    <h1 class="hero-title">
+                        Spectroscopy Data <br>
+                        <span class="highlight-text">Analysis</span>
+                    </h1>
+                    <p class="hero-desc">
+                        Authenticity decoded at the speed of light. We transform complex spectral data into actionable insights for a safer, verified world.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                        <a href="#focus" class="btn btn-outline">Our Solutions</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mission-about" class="content-section">
+            <div class="container">
+                <div class="split-layout">
+                    <div class="split-box" data-aos="fade-up">
+                        <div class="icon-box">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <h2>Our Mission</h2>
+                        <p>From healthcare to heritage, from fuels to food—the spectrum speaks a universal language. We make that language accessible, affordable, and actionable, ensuring that knowledge once locked in laboratories can now transform entire ecosystems.</p>
+                    </div>
+                    
+                    <div class="split-box highlight-bg" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon-box">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                        </div>
+                        <h2>About Us</h2>
+                        <p>DeepSpectrum Analytics develops advanced optical spectroscopy solutions for quality, composition, and particle analysis across diverse industries. Our approach integrates curated spectral libraries, smart analytics, and instrumentation into a seamless solution.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="focus" class="content-section bg-light">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Our Focus Areas</h2>
+                    <div class="header-line"></div>
+                    <p>Pioneering solutions across critical industries.</p>
+                </div>
+                
+                <div class="focus-grid">
+                    <div class="focus-card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card-image">
+                            <img src="paints.jpg" alt="Paint Analysis">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-icon">🎨</div>
+                            <h3>Paint Analysis</h3>
+                            <p>Determining paint constituents and assessing material integrity for industrial quality control.</p>
+                        </div>
+                    </div>
+
+                    <div class="focus-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-image">
+                            <img src="petrol.png" alt="Fuel Verification">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-icon">⛽</div>
+                            <h3>Fuel Verification</h3>
+                            <p>Instant verification of ethanol percentage and fuel authenticity to prevent adulteration.</p>
+                        </div>
+                    </div>
+
+                    <div class="focus-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-image">
+                            <img src="alcohols.webp" alt="Beverage Authentication">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-icon">🍷</div>
+                            <h3>Beverage Authentication</h3>
+                            <p>Detecting counterfeit products and ensuring rigorous quality standards in beverages.</p>
+                        </div>
+                    </div>
+
+                    <div class="focus-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-image">
+                            <img src="Agri.jpg" alt="Agriculture">
+                            <div class="overlay"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-icon">🌱</div>
+                            <h3>Agriculture</h3>
+                            <p>Analyzing soil health, crop maturity, and detecting plant stress for precision farming.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section">
+            <div class="container">
+                <div class="contact-layout">
+                    <div class="contact-text" data-aos="fade-right">
+                        <h2>Innovate with Us</h2>
+                        <p class="lead">DeepSpectrum Analytics is at the forefront of a technological revolution.</p>
+                        <p>Our proprietary optical spectroscopy platforms offer solutions with vast market potential. We are seeking strategic partners to accelerate our growth and scale our market penetration.</p>
+                        
+                        <div class="contact-details">
+                            <div class="detail">
+                                <strong>Email:</strong> deepspectrumanalytics@gmail.com
+                            </div>
+                            <div class="detail">
+                                <strong>Phone:</strong> +91 8072925750
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-wrapper" data-aos="fade-left">
+                        <h3>Get In Touch</h3>
+                        <form action="#" method="POST">
+                            <input type="text" name="Name" placeholder="Your Name" required>
+                            <input type="email" name="Email" placeholder="Your Email" required>
+                            <textarea name="Message" placeholder="Your Message" rows="4" required></textarea>
+                            <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h4>DeepSpectrum Analytics</h4>
+                    <p>Developing advanced optical spectroscopy solutions.</p>
+                    <div class="badges">
+                        <span class="badge">DPIIT Recognized Startup</span>
+                    </div>
+                </div>
+                <div class="footer-nav">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="patents.html">Patents</a></li>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 DeepSpectrum Analytics Pvt. Ltd. - All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
