@@ -8,9 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -41,8 +39,6 @@
 
     <main>
         <section class="hero">
-            <canvas id="hero-3d-canvas"></canvas>
-
             <div class="container hero-container">
                 <div class="hero-text" data-aos="fade-right">
                     <p class="hero-subtitle">DeepSpectrum Private Limited</p>
@@ -58,7 +54,7 @@
                         <a href="#focus" class="btn btn-outline">Our Solutions</a>
                     </div>
                 </div>
-            </div>
+                </div>
         </section>
 
         <section id="mission-about" class="content-section">
@@ -94,7 +90,7 @@
                 <div class="focus-grid">
                     <div class="focus-card" data-aos="fade-up" data-aos-delay="0">
                         <div class="card-image">
-                            <img src="paints.jpg" alt="Paint Analysis">
+                            <img src="paint1.jpg" alt="Paint Analysis">
                             <div class="overlay"></div>
                         </div>
                         <div class="card-body">
@@ -106,7 +102,7 @@
 
                     <div class="focus-card" data-aos="fade-up" data-aos-delay="100">
                         <div class="card-image">
-                            <img src="petrol.png" alt="Fuel Verification">
+                            <img src="fuelimage3.png" alt="Fuel Verification">
                             <div class="overlay"></div>
                         </div>
                         <div class="card-body">
@@ -118,7 +114,7 @@
 
                     <div class="focus-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="card-image">
-                            <img src="alcohols.webp" alt="Beverage Authentication">
+                            <img src="alcohol image1.png" alt="Beverage Authentication">
                             <div class="overlay"></div>
                         </div>
                         <div class="card-body">
@@ -130,7 +126,7 @@
 
                     <div class="focus-card" data-aos="fade-up" data-aos-delay="300">
                         <div class="card-image">
-                            <img src="Agri.jpg" alt="Agriculture">
+                            <img src="agri1.jpg" alt="Agriculture">
                             <div class="overlay"></div>
                         </div>
                         <div class="card-body">
@@ -163,7 +159,8 @@
 
                     <div class="contact-form-wrapper" data-aos="fade-left">
                         <h3>Get In Touch</h3>
-                        <form action="#" method="POST">
+                        <form action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="dc2c4850-e455-4421-845f-1b34b4c574f9">
                             <input type="text" name="Name" placeholder="Your Name" required>
                             <input type="email" name="Email" placeholder="Your Email" required>
                             <textarea name="Message" placeholder="Your Message" rows="4" required></textarea>
@@ -176,31 +173,33 @@
     </main>
 
     <footer id="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h4>DeepSpectrum Analytics</h4>
-                    <p>Developing advanced optical spectroscopy solutions.</p>
-                    <div class="badges">
-                        <span class="badge">DPIIT Recognized Startup</span>
-                    </div>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>DeepSpectrum Analytics</h4>
+                <p>Developing advanced optical spectroscopy solutions.</p>
+                
+                <div class="footer-badges">
+                    <img src="dpit.jpg" alt="DPIIT Recognized Startup" class="dpiit-badge">
                 </div>
-                <div class="footer-nav">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="patents.html">Patents</a></li>
-                        <li><a href="publications.html">Publications</a></li>
-                        <li><a href="team.html">Team</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
+
             </div>
-            <div class="footer-copyright">
-                <p>&copy; 2025 DeepSpectrum Analytics Pvt. Ltd. - All Rights Reserved</p>
+            <div class="footer-nav">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="patents.html">Patents</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+        <div class="footer-copyright">
+            <p>&copy; 2025 DeepSpectrum Analytics Pvt. Ltd. - All Rights Reserved</p>
+        </div>
+    </div>
+</footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>

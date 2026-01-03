@@ -79,38 +79,35 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* --- Hero Section (3D Background) --- */
+/* --- HERO SECTION (UPDATED FOR BACKGROUND IMAGE) --- */
 .hero {
     position: relative;
     height: 100vh;
     min-height: 600px;
     display: flex;
     align-items: center;
-    background: radial-gradient(circle at center, #f0f8ff 0%, #ffffff 100%);
+    
+    /* Set the uploaded image as the main background */
+    background-image: url('heroo.png'); 
+    background-size: cover;        /* Ensures image covers the whole area */
+    background-position: center;   /* Centers the image */
+    background-repeat: no-repeat;
+    
     overflow: hidden;
     padding-top: 80px;
 }
 
-#hero-3d-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
 .hero-container {
     position: relative;
-    z-index: 2; /* Content above canvas */
+    z-index: 2;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 60px;
-    align-items: center;
+    display: block; /* Changed from Grid to Block */
 }
 
-.hero-text { max-width: 700px; }
+/* Limit text width so it stays on the left side (white space) */
+.hero-text { 
+    max-width: 650px; 
+}
 
 .hero-subtitle {
     color: var(--primary);
@@ -168,21 +165,16 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 }
 .btn-outline:hover { background: var(--primary); color: #fff; transform: translateY(-3px); }
 
-/* --- TEAM GRID (Strictly 3 per line on Desktop) --- */
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* FORCE 3 COLUMNS */
-    gap: 30px;
-}
+/* --- SECTIONS: Focus, About, Mission --- */
 
-/* --- Focus Grid (Auto fit for homepage) --- */
+/* Focus Grid */
 .focus-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 30px;
 }
 
-/* Card Styling (Shared) */
+/* Card Styling */
 .focus-card {
     background: #fff;
     border-radius: 15px;
@@ -202,7 +194,7 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 .card-body h3 { font-size: 1.4rem; color: var(--primary); margin-bottom: 10px; }
 .card-body p { font-size: 0.95rem; color: var(--text); }
 
-/* --- Split Layout (Mission/About) --- */
+/* Split Layout (Mission/About) */
 .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
 .split-box { background: #fff; padding: 50px; border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--shadow); transition: 0.3s; }
 .split-box:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
@@ -210,12 +202,12 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 .icon-box { color: var(--primary); margin-bottom: 20px; }
 .split-box h2 { font-size: 2rem; color: var(--dark); margin-bottom: 15px; }
 
-/* --- Section Headers --- */
+/* Section Headers */
 .section-header { text-align: center; margin-bottom: 60px; }
 .section-header h2 { font-size: 2.5rem; color: var(--dark); margin-bottom: 15px; }
 .header-line { width: 60px; height: 4px; background: var(--primary); margin: 0 auto 20px; border-radius: 2px; }
 
-/* --- Contact Section --- */
+/* Contact Section */
 .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 .contact-text h2 { font-size: 2.5rem; color: var(--dark); margin-bottom: 20px; }
 .contact-text .lead { font-size: 1.2rem; color: var(--primary); margin-bottom: 20px; font-weight: 500; }
@@ -230,29 +222,105 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 .contact-form-wrapper input:focus, .contact-form-wrapper textarea:focus { border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.1); }
 .btn-block { width: 100%; }
 
-/* --- Footer --- */
-#main-footer { background: #fff; border-top: 1px solid var(--border); padding: 80px 0 20px; }
-.footer-content { display: grid; grid-template-columns: 2fr 1fr; gap: 50px; margin-bottom: 40px; }
-.footer-brand h4 { font-size: 1.5rem; color: var(--dark); margin-bottom: 15px; }
-.badge { background: var(--bg-gray); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; color: var(--primary); font-weight: 600; border: 1px solid var(--border); }
-.footer-nav h4 { margin-bottom: 20px; color: var(--dark); }
-.footer-nav ul li { margin-bottom: 10px; }
-.footer-nav a:hover { color: var(--primary); padding-left: 5px; }
-.footer-copyright { text-align: center; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.9rem; color: #999; }
-
-/* --- Responsive Media Queries --- */
-@media (max-width: 992px) {
-    .hero-title { font-size: 3rem; }
-    .hero-container { grid-template-columns: 1fr; text-align: center; }
-    .hero-image-wrapper { order: -1; max-width: 500px; margin: 0 auto; }
-    .hero-btns { justify-content: center; }
-    .split-layout, .contact-layout, .footer-content { grid-template-columns: 1fr; }
-    
-    /* 2 Columns for Team on Tablets */
-    .team-grid { grid-template-columns: repeat(2, 1fr); }
-    .focus-container { grid-template-columns: repeat(2, 1fr); }
+/* --- Team Grid --- */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
 }
 
+/* --- Footer --- */
+/* --- Footer --- */
+#main-footer { 
+    background: #fff; 
+    border-top: 1px solid var(--border); 
+    padding: 80px 0 20px; 
+}
+
+.footer-content { 
+    display: grid; 
+    grid-template-columns: 2fr 1fr; 
+    gap: 50px; 
+    margin-bottom: 40px; 
+}
+
+.footer-brand h4 { 
+    font-size: 1.5rem; 
+    color: var(--dark); 
+    margin-bottom: 15px; 
+}
+
+/* Style for the DPIIT Image */
+.dpiit-badge {
+    height: 45px;       /* Sets a fixed height so it looks neat */
+    width: auto;        /* Auto width maintains aspect ratio */
+    margin-top: 15px;   /* Adds space above the image */
+    display: block;
+}
+
+.footer-nav h4 { 
+    margin-bottom: 20px; 
+    color: var(--dark); 
+}
+
+.footer-nav ul li { 
+    margin-bottom: 10px; 
+}
+
+.footer-nav a:hover { 
+    color: var(--primary); 
+    padding-left: 5px; 
+}
+
+.footer-copyright { 
+    text-align: center; 
+    padding-top: 20px; 
+    border-top: 1px solid var(--border); 
+    font-size: 0.9rem; 
+    color: #999; 
+}
+
+
+/* --- Responsive Media Queries --- */
+
+/* Laptops & Tablets */
+@media (max-width: 992px) {
+    /* Adjust Hero for Mobile to ensure text is readable */
+    .hero {
+        background-position: 75% center; /* Shift image slightly */
+    }
+    
+    /* Add a white overlay so text pops on mobile */
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(255,255,255,0.7);
+        z-index: 1;
+    }
+    
+    .hero-container {
+        z-index: 3;
+
+
+        text-align: center;
+    }
+    
+    .hero-text {
+        max-width: 100%; /* Full width on mobile */
+        margin: 0 auto;
+    }
+
+    .hero-title { font-size: 3rem; }
+    .hero-buttons { justify-content: center; }
+
+    /* Other Sections Layouts */
+    .split-layout, .contact-layout, .footer-content { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .focus-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Phones */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -269,5 +337,5 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     
     /* 1 Column for Team on Mobile */
     .team-grid { grid-template-columns: 1fr; }
-    .focus-container { grid-template-columns: 1fr; }
+    .focus-grid { grid-template-columns: 1fr; }
 }
