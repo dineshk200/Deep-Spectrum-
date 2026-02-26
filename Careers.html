@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | DeepSpectrum Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Career-specific styles that extend the existing theme */
+        .career-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
+            transition: 0.4s ease;
+        }
+        .career-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .career-card-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 30px 35px;
+            color: #fff;
+        }
+        .career-card-header h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .career-card-header .position-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: #fff;
+            font-size: 0.82rem;
+            font-weight: 500;
+            padding: 4px 14px;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+        }
+
+        .career-card-body {
+            padding: 35px;
+        }
+
+        .career-section-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            margin-top: 25px;
+        }
+        .career-section-label:first-child {
+            margin-top: 0;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+        .skill-tag {
+            background: #f0f6ff;
+            border: 1px solid #c8dff7;
+            color: var(--primary);
+            font-size: 0.83rem;
+            font-weight: 500;
+            padding: 5px 14px;
+            border-radius: 50px;
+        }
+
+        .responsibilities-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .responsibilities-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.55;
+        }
+        .responsibilities-list li:last-child {
+            border-bottom: none;
+        }
+        .responsibilities-list li::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+
+        .career-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border);
+        }
+        .qualification-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .qualification-badge .qual-icon {
+            width: 40px;
+            height: 40px;
+            background: #f0f6ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .qualification-badge .qual-text {
+            font-size: 0.88rem;
+            color: var(--text);
+        }
+        .qualification-badge .qual-text strong {
+            display: block;
+            color: var(--dark);
+            font-size: 0.92rem;
+        }
+
+        .apply-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.92rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,102,204,0.25);
+        }
+        .apply-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,102,204,0.35);
+            color: #fff;
+        }
+        .apply-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .location-note {
+            background: var(--bg-gray);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            padding: 12px 18px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        .location-note strong {
+            color: var(--dark);
+        }
+
+        /* Divider between the two cards */
+        .careers-divider {
+            text-align: center;
+            margin: 10px 0 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: #bbb;
+            font-size: 0.85rem;
+        }
+        .careers-divider::before,
+        .careers-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        @media (max-width: 600px) {
+            .career-card-header { padding: 22px 20px; }
+            .career-card-body { padding: 22px 20px; }
+            .career-footer { flex-direction: column; align-items: flex-start; }
+            .apply-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"><img src="Logo.svg" alt="DeepSpectrum"></a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="patents.html">Patents</a></li>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="index.html#contact" class="btn-nav">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero" style="display: flex; align-items: flex-start; padding-top: 150px; min-height: 40vh;">
+            <div class="container hero-container" style="text-align: left; width: 100%;">
+                <div class="hero-text" data-aos="fade-right" style="margin-top: 0;">
+                    <h1 class="hero-title" style="margin-bottom: 10px;">Join Our Team</h1>
+                    <p class="hero-desc" style="margin-left: 0; max-width: 500px;">
+                        Build the future of spectroscopy with us at IIT Madras Research Park.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Open Positions</h2>
+                    <div class="header-line"></div>
+                    <p>We're looking for curious minds to join our growing team.</p>
+                </div>
+
+                <!-- Job 1: Spectroscopy / Optics -->
+                <div class="career-card" data-aos="fade-up">
+                    <div class="career-card-header">
+                        <span class="position-tag"> DeepSpectrum Analytics Private Limited</span>
+                        <h3 style="margin-top: 12px;">Junior Scientist / Engineer</h3>
+                        <p style="font-size:0.92rem; opacity:0.9; margin-top:5px;">Instrumentation · Data Analytics · Optics · Designing</p>
+                    </div>
+                    <div class="career-card-body">
+
+                        <p class="career-section-label">Preferred Skills</p>
+                        <div class="skills-list">
+                            <span class="skill-tag">Zemax</span>
+                            <span class="skill-tag">SolidWorks</span>
+                            <span class="skill-tag">Autodesk</span>
+                            <span class="skill-tag">COMSOL</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Data Mining</span>
+                            <span class="skill-tag">Instrumentation</span>
+                        </div>
+
+                        <p class="career-section-label">Job Responsibilities</p>
+                        <ul class="responsibilities-list">
+                            <li>Designing, fabrication and interfacing of spectroscopic devices</li>
+                            <li>Data collection and execution of project tasks</li>
+                            <li>Support in the writing and presentation of proposals and project reports</li>
+                            <li>Attending workshops and conferences for the presentation of products</li>
+                            <li>Travel to different labs and locations for data collection</li>
+                        </ul>
+
+                        <div class="location-note">
+                            <strong>📍 Location :</strong> IIT Madras Research Park — a position with an IIT Madras startup<br>
+                            <strong>📩 Mail :</strong> Please forward your CV to - kamalesh@alumni.iitm.ac.in
+                        </div>
+
+                        <div class="career-footer">
+                            <div class="qualification-badge">
+                                <div class="qual-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0066cc" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                                </div>
+                                <div class="qual-text">
+                                    <strong>Qualification</strong>
+                                    BE / BTech / MS / MSc with relevant experience
+                                </div>
+                            </div>
+                            <a href="mailto:kamalesh@alumni.iitm.ac.in" class="apply-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                Apply: kamalesh@alumni.iitm.ac.in
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="careers-divider">Also hiring</div>
+
+                <!-- Job 2: Electronics / Sensors -->
+                <div class="career-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="career-card-header">
+                        <span class="position-tag"> EyeNetAqua solutions private limited</span>
+                        <h3 style="margin-top: 12px;">Junior Scientist / Engineer</h3>
+                        <p style="font-size:0.92rem; opacity:0.9; margin-top:5px;">Instrumentation · Electronics</p>
+                    </div>
+                    <div class="career-card-body">
+
+                        <p class="career-section-label">Preferred Areas of Specialization</p>
+                        <div class="skills-list">
+                            <span class="skill-tag">Instrumentation</span>
+                            <span class="skill-tag">Electronics</span>
+                            <span class="skill-tag">Microcontrollers</span>
+                            <span class="skill-tag">Firmware</span>
+                            <span class="skill-tag">Sensors</span>
+                        </div>
+
+                        <p class="career-section-label">Job Responsibilities</p>
+                        <ul class="responsibilities-list">
+                            <li>Testing and integration of sensors with microcontrollers</li>
+                            <li>Electronic module/system integration, firmware programming and deployment in the field</li>
+                            <li>Travel to deployment locations for installation, troubleshooting, demonstration and presentation workshops</li>
+                            <li>Preparation and testing of water quality testing reagents</li>
+                            <li>Optimization and testing of reagents for use with smartphone-attachable devices</li>
+                            <li>Taking care of inventory, procurement and upkeep of the lab</li>
+                            <li>Any other task assigned as per company and local work requirements</li>
+                        </ul>
+
+                        <div class="location-note">
+                            <strong>📍 Location :</strong> IIT Madras Research Park — a position with an IIT Madras startup<br>
+                            <strong>📩 Mail :</strong> Please forward your CV to - eyenetaquasolutions@gmail.com
+                        </div>
+                         
+
+                        <div class="career-footer">
+                            <div class="qualification-badge">
+                                <div class="qual-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0066cc" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                                </div>
+                                <div class="qual-text">
+                                    <strong>Qualification</strong>
+                                    BE / BTech / MS / MSc with relevant experience
+                                </div>
+                            </div>
+                            <a href="mailto:eyenetaquasolutions@gmail.com" class="apply-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                Apply: eyenetaquasolutions@gmail.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h4>DeepSpectrum Analytics</h4>
+                    <p>Developing advanced optical spectroscopy solutions.</p>
+                    <div class="footer-badges">
+                        <img src="dpit.jpg" alt="DPIIT Recognized Startup" class="dpiit-badge">
+                    </div>
+                </div>
+                <div class="footer-nav">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="patents.html">Patents</a></li>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 DeepSpectrum Analytics Pvt. Ltd. - All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

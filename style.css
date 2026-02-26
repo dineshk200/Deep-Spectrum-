@@ -119,7 +119,7 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 }
 
 .hero-title {
-    font-size: 4rem;
+    font-size: 3rem;
     line-height: 1.1;
     color: var(--dark);
     font-weight: 700;
