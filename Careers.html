@@ -8,204 +8,227 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Career-specific styles that extend the existing theme */
-        .career-card {
+
+        /* ═══════════════════════════════════════
+           JOB AD CARDS
+        ═══════════════════════════════════════ */
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            margin-bottom: 80px;
+        }
+
+        .job-ad-card {
             background: #fff;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
+            border-radius: 18px;
             border: 1px solid var(--border);
-            margin-bottom: 40px;
-            transition: 0.4s ease;
-        }
-        .career-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .career-card-header {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            padding: 30px 35px;
-            color: #fff;
-        }
-        .career-card-header h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .career-card-header .position-tag {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.4);
-            color: #fff;
-            font-size: 0.82rem;
-            font-weight: 500;
-            padding: 4px 14px;
-            border-radius: 50px;
-            letter-spacing: 0.5px;
-        }
-
-        .career-card-body {
-            padding: 35px;
-        }
-
-        .career-section-label {
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--primary);
-            margin-bottom: 10px;
-            margin-top: 25px;
-        }
-        .career-section-label:first-child {
-            margin-top: 0;
-        }
-
-        .skills-list {
+            box-shadow: var(--shadow);
+            overflow: hidden;
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 5px;
+            flex-direction: column;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
         }
-        .skill-tag {
-            background: #f0f6ff;
-            border: 1px solid #c8dff7;
-            color: var(--primary);
-            font-size: 0.83rem;
-            font-weight: 500;
-            padding: 5px 14px;
-            border-radius: 50px;
+        .job-ad-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 50px rgba(0,0,0,0.13);
         }
 
-        .responsibilities-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        /* Gradient accent bar at top */
+        .jac-bar {
+            height: 7px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
         }
-        .responsibilities-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 9px 0;
+
+        /* Header zone */
+        .jac-header {
+            padding: 28px 30px 22px;
             border-bottom: 1px solid var(--border);
-            font-size: 0.95rem;
-            color: var(--text);
-            line-height: 1.55;
-        }
-        .responsibilities-list li:last-child {
-            border-bottom: none;
-        }
-        .responsibilities-list li::before {
-            content: '';
-            display: block;
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            flex-shrink: 0;
-            margin-top: 7px;
         }
 
-        .career-footer {
+        .jac-company-row {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
             gap: 15px;
-            margin-top: 30px;
-            padding-top: 25px;
-            border-top: 1px solid var(--border);
+            margin-bottom: 18px;
         }
-        .qualification-badge {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .qualification-badge .qual-icon {
-            width: 40px;
-            height: 40px;
-            background: #f0f6ff;
-            border-radius: 50%;
+
+        /* Logo container — white bg so SVGs render cleanly */
+        .jac-logo-wrap {
+            width: 58px;
+            height: 58px;
+            border-radius: 13px;
+            background: #fff;
+            border: 1.5px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            padding: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
         }
-        .qualification-badge .qual-text {
-            font-size: 0.88rem;
-            color: var(--text);
-        }
-        .qualification-badge .qual-text strong {
-            display: block;
-            color: var(--dark);
-            font-size: 0.92rem;
+        .jac-logo-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
-        .apply-btn {
+        .jac-company-info .jac-company  { font-size: 0.82rem; font-weight: 700; color: var(--primary); letter-spacing: 0.3px; }
+        .jac-company-info .jac-location { font-size: 0.76rem; color: #999; margin-top: 3px; }
+
+        /* On-Site badge only */
+        .jac-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 16px;
+        }
+        .jbadge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 28px;
+            gap: 5px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 50px;
+            letter-spacing: 0.3px;
+        }
+        .jbadge svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+        .jbadge-onsite { background: #f3f0ff; color: #5a3fc0; border: 1px solid #c9c0f0; }
+
+        .jac-title    { font-size: 1.3rem; font-weight: 700; color: var(--dark); line-height: 1.25; margin-bottom: 5px; }
+        .jac-subtitle { font-size: 0.83rem; color: var(--text); font-weight: 500; }
+
+        /* Body zone */
+        .jac-body {
+            padding: 24px 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .jac-section-title {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: var(--primary);
+            margin-bottom: 9px;
+        }
+
+        /* Skills pills */
+        .jac-skills { display: flex; flex-wrap: wrap; gap: 7px; }
+        .jac-skill {
+            background: #f0f6ff;
+            border: 1px solid #c8dff7;
+            color: var(--primary);
+            font-size: 0.77rem;
+            font-weight: 500;
+            padding: 4px 13px;
+            border-radius: 50px;
+        }
+
+        /* Responsibilities list */
+        .jac-resp { list-style: none; padding: 0; margin: 0; }
+        .jac-resp li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.86rem;
+            color: var(--text);
+            line-height: 1.55;
+            padding: 7px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        .jac-resp li:last-child { border-bottom: none; }
+        .jac-resp li::before {
+            content: '';
+            width: 7px; height: 7px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+
+        /* Info strip */
+        .jac-info-strip {
+            background: var(--bg-gray);
+            border-radius: 10px;
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            font-size: 0.82rem;
+            color: var(--text);
+        }
+        .jac-info-row { display: flex; align-items: flex-start; gap: 8px; }
+        .jac-info-row .jac-info-icon { font-size: 1rem; flex-shrink: 0; line-height: 1.4; }
+        .jac-info-row strong { color: var(--dark); }
+        .jac-info-row a { color: var(--primary); font-weight: 500; word-break: break-all; }
+        .jac-info-row a:hover { text-decoration: underline; }
+
+        /* Qualification row */
+        .jac-qual {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f8fbff;
+            border: 1px solid #daeeff;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 0.83rem;
+            color: var(--text);
+        }
+        .jac-qual svg { width: 17px; height: 17px; stroke: var(--primary); fill: none; stroke-width: 2; flex-shrink: 0; }
+        .jac-qual strong { color: var(--dark); }
+
+        /* Footer — email button only */
+        .jac-footer { padding: 0 30px 28px; }
+
+        .jac-apply-mail {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 14px;
             border-radius: 50px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             color: #fff;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.92rem;
             text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,102,204,0.25);
+            transition: all 0.3s;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,102,204,0.28);
+            letter-spacing: 0.3px;
         }
-        .apply-btn:hover {
+        .jac-apply-mail:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,102,204,0.35);
+            box-shadow: 0 10px 22px rgba(0,102,204,0.4);
             color: #fff;
         }
-        .apply-btn svg {
-            width: 16px;
-            height: 16px;
-        }
+        .jac-apply-mail svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2; }
 
-        .location-note {
-            background: var(--bg-gray);
-            border-left: 4px solid var(--accent);
-            border-radius: 0 8px 8px 0;
-            padding: 12px 18px;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: var(--text);
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════ */
+        @media (max-width: 860px) {
+            .jobs-grid { grid-template-columns: 1fr; }
         }
-        .location-note strong {
-            color: var(--dark);
-        }
-
-        /* Divider between the two cards */
-        .careers-divider {
-            text-align: center;
-            margin: 10px 0 40px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            color: #bbb;
-            font-size: 0.85rem;
-        }
-        .careers-divider::before,
-        .careers-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
         @media (max-width: 600px) {
-            .career-card-header { padding: 22px 20px; }
-            .career-card-body { padding: 22px 20px; }
-            .career-footer { flex-direction: column; align-items: flex-start; }
-            .apply-btn { width: 100%; justify-content: center; }
+            .jac-header { padding: 20px; }
+            .jac-body   { padding: 18px 20px; }
+            .jac-footer { padding: 0 20px 22px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ── HEADER ── -->
     <header>
         <div class="container">
             <nav>
@@ -216,7 +239,7 @@
                         <li><a href="patents.html">Patents</a></li>
                         <li><a href="publications.html">Publications</a></li>
                         <li><a href="team.html">Team</a></li>
-                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="careers.html" class="active">Careers</a></li>
                         <li><a href="index.html#contact" class="btn-nav">Contact</a></li>
                     </ul>
                 </div>
@@ -227,17 +250,19 @@
 
     <main>
 
-        <section class="hero" style="display: flex; align-items: flex-start; padding-top: 150px; min-height: 40vh;">
-            <div class="container hero-container" style="text-align: left; width: 100%;">
-                <div class="hero-text" data-aos="fade-right" style="margin-top: 0;">
-                    <h1 class="hero-title" style="margin-bottom: 10px;">Join Our Team</h1>
-                    <p class="hero-desc" style="margin-left: 0; max-width: 500px;">
+        <!-- ── HERO ── -->
+        <section class="hero" style="display:flex; align-items:flex-start; padding-top:150px; min-height:40vh;">
+            <div class="container hero-container" style="text-align:left; width:100%;">
+                <div class="hero-text" data-aos="fade-right" style="margin-top:0;">
+                    <h1 class="hero-title" style="margin-bottom:10px;">Join Our Team</h1>
+                    <p class="hero-desc" style="margin-left:0; max-width:500px;">
                         Build the future of spectroscopy with us at IIT Madras Research Park.
                     </p>
                 </div>
             </div>
         </section>
 
+        <!-- ── JOB ADS ── -->
         <section class="content-section">
             <div class="container">
 
@@ -247,118 +272,171 @@
                     <p>We're looking for curious minds to join our growing team.</p>
                 </div>
 
-                <!-- Job 1: Spectroscopy / Optics -->
-                <div class="career-card" data-aos="fade-up">
-                    <div class="career-card-header">
-                        <span class="position-tag"> DeepSpectrum Analytics Private Limited</span>
-                        <h3 style="margin-top: 12px;">Junior Scientist / Engineer</h3>
-                        <p style="font-size:0.92rem; opacity:0.9; margin-top:5px;">Instrumentation · Data Analytics · Optics · Designing</p>
-                    </div>
-                    <div class="career-card-body">
+                <div class="jobs-grid">
 
-                        <p class="career-section-label">Preferred Skills</p>
-                        <div class="skills-list">
-                            <span class="skill-tag">Zemax</span>
-                            <span class="skill-tag">SolidWorks</span>
-                            <span class="skill-tag">Autodesk</span>
-                            <span class="skill-tag">COMSOL</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Data Mining</span>
-                            <span class="skill-tag">Instrumentation</span>
-                        </div>
+                    <!-- ══ JOB AD 1 — DeepSpectrum ══ -->
+                    <div class="job-ad-card" data-aos="fade-up">
+                        <div class="jac-bar"></div>
 
-                        <p class="career-section-label">Job Responsibilities</p>
-                        <ul class="responsibilities-list">
-                            <li>Designing, fabrication and interfacing of spectroscopic devices</li>
-                            <li>Data collection and execution of project tasks</li>
-                            <li>Support in the writing and presentation of proposals and project reports</li>
-                            <li>Attending workshops and conferences for the presentation of products</li>
-                            <li>Travel to different labs and locations for data collection</li>
-                        </ul>
-
-                        <div class="location-note">
-                            <strong>📍 Location :</strong> IIT Madras Research Park — a position with an IIT Madras startup<br>
-                            <strong>📩 Mail :</strong> Please forward your CV to - kamalesh@alumni.iitm.ac.in
-                        </div>
-
-                        <div class="career-footer">
-                            <div class="qualification-badge">
-                                <div class="qual-icon">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0066cc" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        <div class="jac-header">
+                            <div class="jac-company-row">
+                                <div class="jac-logo-wrap">
+                                    <img src="Logo.svg" alt="DeepSpectrum Analytics Logo">
                                 </div>
-                                <div class="qual-text">
-                                    <strong>Qualification</strong>
-                                    BE / BTech / MS / MSc with relevant experience
+                                <div class="jac-company-info">
+                                    <div class="jac-company">DeepSpectrum Analytics Private Limited</div>
+                                    <div class="jac-location">IIT Madras Research Park, Chennai</div>
                                 </div>
                             </div>
-                            <a href="mailto:kamalesh@alumni.iitm.ac.in" class="apply-btn">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                                Apply: kamalesh@alumni.iitm.ac.in
+
+                            <div class="jac-badges">
+                                <span class="jbadge jbadge-onsite">
+                                    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    On-Site
+                                </span>
+                            </div>
+
+                            <div class="jac-title">Junior Scientist / Engineer</div>
+                            <div class="jac-subtitle">Instrumentation &nbsp;·&nbsp; Data Analytics &nbsp;·&nbsp; Optics &nbsp;·&nbsp; Designing</div>
+                        </div>
+
+                        <div class="jac-body">
+
+                            <div>
+                                <div class="jac-section-title">Preferred Skills</div>
+                                <div class="jac-skills">
+                                    <span class="jac-skill">Zemax</span>
+                                    <span class="jac-skill">SolidWorks</span>
+                                    <span class="jac-skill">Autodesk</span>
+                                    <span class="jac-skill">COMSOL</span>
+                                    <span class="jac-skill">Python</span>
+                                    <span class="jac-skill">Data Mining</span>
+                                    <span class="jac-skill">Instrumentation</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="jac-section-title">Responsibilities</div>
+                                <ul class="jac-resp">
+                                    <li>Designing, fabrication and interfacing of spectroscopic devices</li>
+                                    <li>Data collection and execution of project tasks</li>
+                                    <li>Support in writing and presentation of proposals and project reports</li>
+                                    <li>Attending workshops and conferences for product presentation</li>
+                                    <li>Travel to different labs and locations for data collection</li>
+                                </ul>
+                            </div>
+
+                            <div class="jac-qual">
+                                <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                                <div><strong>Qualification:</strong>&nbsp; BE / BTech / MS / MSc with relevant experience</div>
+                            </div>
+
+                            <div class="jac-info-strip">
+                                <div class="jac-info-row">
+                                    <span class="jac-info-icon">📍</span>
+                                    <div><strong>Location:</strong>&nbsp; IIT Madras Research Park — an IIT Madras startup</div>
+                                </div>
+                                <div class="jac-info-row">
+                                    <span class="jac-info-icon">📩</span>
+                                    <div><strong>Mail CV to:</strong>&nbsp; <a href="mailto:kamalesh@alumni.iitm.ac.in">kamalesh@alumni.iitm.ac.in</a></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="jac-footer">
+                            <a href="mailto:kamalesh@alumni.iitm.ac.in" class="jac-apply-mail">
+                                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                Send CV — kamalesh@alumni.iitm.ac.in
                             </a>
                         </div>
                     </div>
-                </div>
 
-                <div class="careers-divider">Also hiring</div>
+                    <!-- ══ JOB AD 2 — EyeNetAqua ══ -->
+                    <div class="job-ad-card" data-aos="fade-up" data-aos-delay="120">
+                        <div class="jac-bar"></div>
 
-                <!-- Job 2: Electronics / Sensors -->
-                <div class="career-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="career-card-header">
-                        <span class="position-tag"> EyeNetAqua solutions private limited</span>
-                        <h3 style="margin-top: 12px;">Junior Scientist / Engineer</h3>
-                        <p style="font-size:0.92rem; opacity:0.9; margin-top:5px;">Instrumentation · Electronics</p>
-                    </div>
-                    <div class="career-card-body">
-
-                        <p class="career-section-label">Preferred Areas of Specialization</p>
-                        <div class="skills-list">
-                            <span class="skill-tag">Instrumentation</span>
-                            <span class="skill-tag">Electronics</span>
-                            <span class="skill-tag">Microcontrollers</span>
-                            <span class="skill-tag">Firmware</span>
-                            <span class="skill-tag">Sensors</span>
-                        </div>
-
-                        <p class="career-section-label">Job Responsibilities</p>
-                        <ul class="responsibilities-list">
-                            <li>Testing and integration of sensors with microcontrollers</li>
-                            <li>Electronic module/system integration, firmware programming and deployment in the field</li>
-                            <li>Travel to deployment locations for installation, troubleshooting, demonstration and presentation workshops</li>
-                            <li>Preparation and testing of water quality testing reagents</li>
-                            <li>Optimization and testing of reagents for use with smartphone-attachable devices</li>
-                            <li>Taking care of inventory, procurement and upkeep of the lab</li>
-                            <li>Any other task assigned as per company and local work requirements</li>
-                        </ul>
-
-                        <div class="location-note">
-                            <strong>📍 Location :</strong> IIT Madras Research Park — a position with an IIT Madras startup<br>
-                            <strong>📩 Mail :</strong> Please forward your CV to - eyenetaquasolutions@gmail.com
-                        </div>
-                         
-
-                        <div class="career-footer">
-                            <div class="qualification-badge">
-                                <div class="qual-icon">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0066cc" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        <div class="jac-header">
+                            <div class="jac-company-row">
+                                <div class="jac-logo-wrap">
+                                    <img src="Technical_Partner_2_EyeNetAqua.svg" alt="EyeNetAqua Solutions Logo">
                                 </div>
-                                <div class="qual-text">
-                                    <strong>Qualification</strong>
-                                    BE / BTech / MS / MSc with relevant experience
+                                <div class="jac-company-info">
+                                    <div class="jac-company">EyeNetAqua Solutions Private Limited</div>
+                                    <div class="jac-location">IIT Madras Research Park, Chennai</div>
                                 </div>
                             </div>
-                            <a href="mailto:eyenetaquasolutions@gmail.com" class="apply-btn">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                                Apply: eyenetaquasolutions@gmail.com
+
+                            <div class="jac-badges">
+                                <span class="jbadge jbadge-onsite">
+                                    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    On-Site
+                                </span>
+                            </div>
+
+                            <div class="jac-title">Junior Scientist / Engineer</div>
+                            <div class="jac-subtitle">Instrumentation &nbsp;·&nbsp; Electronics</div>
+                        </div>
+
+                        <div class="jac-body">
+
+                            <div>
+                                <div class="jac-section-title">Preferred Areas of Specialization</div>
+                                <div class="jac-skills">
+                                    <span class="jac-skill">Instrumentation</span>
+                                    <span class="jac-skill">Electronics</span>
+                                    <span class="jac-skill">Microcontrollers</span>
+                                    <span class="jac-skill">Firmware</span>
+                                    <span class="jac-skill">Sensors</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="jac-section-title">Responsibilities</div>
+                                <ul class="jac-resp">
+                                    <li>Testing and integration of sensors with microcontrollers</li>
+                                    <li>Electronic module/system integration, firmware programming and field deployment</li>
+                                    <li>Travel for installation, troubleshooting, demonstration and presentation workshops</li>
+                                    <li>Preparation and testing of water quality testing reagents</li>
+                                    <li>Optimization of reagents for smartphone-attachable devices</li>
+                                    <li>Inventory, procurement and upkeep of the lab</li>
+                                    <li>Any other task as per company and local work requirements</li>
+                                </ul>
+                            </div>
+
+                            <div class="jac-qual">
+                                <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                                <div><strong>Qualification:</strong>&nbsp; BE / BTech / MS / MSc with relevant experience</div>
+                            </div>
+
+                            <div class="jac-info-strip">
+                                <div class="jac-info-row">
+                                    <span class="jac-info-icon">📍</span>
+                                    <div><strong>Location:</strong>&nbsp; IIT Madras Research Park — an IIT Madras startup</div>
+                                </div>
+                                <div class="jac-info-row">
+                                    <span class="jac-info-icon">📩</span>
+                                    <div><strong>Mail CV to:</strong>&nbsp; <a href="mailto:eyenetaquasolutions@gmail.com">eyenetaquasolutions@gmail.com</a></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="jac-footer">
+                            <a href="mailto:eyenetaquasolutions@gmail.com" class="jac-apply-mail">
+                                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                Send CV — eyenetaquasolutions@gmail.com
                             </a>
                         </div>
                     </div>
-                </div>
 
+                </div><!-- /jobs-grid -->
             </div>
         </section>
 
     </main>
 
+    <!-- ── FOOTER ── -->
     <footer id="main-footer">
         <div class="container">
             <div class="footer-content">
@@ -376,6 +454,8 @@
                         <li><a href="patents.html">Patents</a></li>
                         <li><a href="publications.html">Publications</a></li>
                         <li><a href="team.html">Team</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+
                         <li><a href="index.html#contact">Contact</a></li>
                     </ul>
                 </div>
